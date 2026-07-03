@@ -1,0 +1,289 @@
+// Paleta tomada de la invitación de Oli
+$rosa-fuerte: #d98aa0;
+$rosa: #e9a7ba;
+$rosa-claro: #f7d9df;
+$crema: #fff6f2;
+$marron: #7c5a4e;
+$texto: #6b4a4f;
+
+:root {
+    color-scheme: light;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+    color: $texto;
+    background: linear-gradient(160deg, #fdeef0 0%, #f7d9df 45%, #f3cdd8 100%);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+}
+
+.card {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 251, 249, 0.92);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(233, 167, 186, 0.5);
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(180, 120, 135, 0.28);
+    padding: 30px 24px 22px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 22px;
+
+    &__eyebrow {
+        margin: 0;
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: $rosa-fuerte;
+        font-weight: 600;
+    }
+
+    &__name {
+        margin: 2px 0 6px;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 700;
+        font-size: 4.4rem;
+        line-height: 1;
+        color: $rosa-fuerte;
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    &__sub {
+        margin: 0;
+        font-size: 1rem;
+        color: $texto;
+        font-weight: 500;
+    }
+}
+
+.search {
+    position: relative;
+
+    &__input {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1.15rem;
+        font-family: inherit;
+        color: $texto;
+        background: #fff;
+        border: 2px solid $rosa;
+        border-radius: 16px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+
+        &::placeholder {
+            color: #c8a6ad;
+        }
+
+        &:focus {
+            border-color: $rosa-fuerte;
+            box-shadow: 0 0 0 4px rgba(233, 167, 186, 0.28);
+        }
+    }
+}
+
+.suggestions {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 6px;
+    background: #fff;
+    border: 1.5px solid rgba(233, 167, 186, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(180, 120, 135, 0.2);
+    overflow: hidden;
+
+    &__item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 13px 14px;
+        border: none;
+        background: transparent;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1.02rem;
+        color: $texto;
+        text-align: left;
+        transition: background 0.12s;
+
+        &:hover,
+        &:active {
+            background: $rosa-claro;
+        }
+    }
+
+    &__name {
+        font-weight: 600;
+    }
+
+    &__mesa {
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $rosa-fuerte;
+        background: $rosa-claro;
+        padding: 4px 10px;
+        border-radius: 999px;
+    }
+}
+
+.hint {
+    margin: 12px 4px 0;
+    font-size: 0.95rem;
+    color: $rosa-fuerte;
+    text-align: center;
+}
+
+.result {
+    text-align: center;
+    animation: pop 0.35s ease;
+
+    &__hi {
+        margin: 4px 0 14px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: $texto;
+    }
+
+    &__mesa {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 22px 16px;
+        background: linear-gradient(160deg, #fff 0%, $rosa-claro 100%);
+        border: 2px solid $rosa;
+        border-radius: 24px;
+        box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.5);
+    }
+
+    &__label {
+        font-size: 0.85rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: $rosa-fuerte;
+    }
+
+    &__number {
+        font-family: 'Dancing Script', cursive;
+        font-weight: 700;
+        font-size: 6rem;
+        line-height: 1;
+        color: $rosa-fuerte;
+    }
+
+    &__fullname {
+        margin: 14px 0 0;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: $texto;
+    }
+
+    &__again {
+        margin-top: 22px;
+        padding: 12px 22px;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: $rosa-fuerte;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(217, 138, 160, 0.45);
+        transition: transform 0.12s, box-shadow 0.12s;
+
+        &:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(217, 138, 160, 0.4);
+        }
+    }
+}
+
+.mates {
+    margin-top: 20px;
+    padding: 16px 14px;
+    background: rgba(247, 217, 223, 0.4);
+    border-radius: 18px;
+
+    &__title {
+        margin: 0 0 8px;
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: $rosa-fuerte;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        justify-content: center;
+
+        li {
+            background: #fff;
+            border: 1px solid rgba(233, 167, 186, 0.5);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    }
+}
+
+.foot {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: $rosa-fuerte;
+
+    &__heart {
+        font-size: 1rem;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.94);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
