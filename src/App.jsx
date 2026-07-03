@@ -47,7 +47,11 @@ export default function App() {
             <Petals />
             <div className="card">
                 <header className="hero">
-                    <Fawn />
+                    <div className="hero__portrait">
+                        <img className="hero__photo" src="/oli.jpg" alt="Oli" />
+                        <Crown />
+                        <Fawn />
+                    </div>
                     <p className="hero__eyebrow">Bautismo y 1° Cumple de</p>
                     <h1 className="hero__name">Oli</h1>
                     <p className="hero__sub">Escribí tu nombre y encontrá tu mesa</p>
@@ -160,10 +164,10 @@ function Hearts() {
     );
 }
 
-// Cervatilla con corona de flores, en la paleta de la invitación.
+// Florcita de 5 pétalos, compartida entre la corona de la foto y la cervatilla.
 // Colores hardcodeados acá porque el SVG no ve las variables SCSS.
-function Fawn() {
-    const flor = (cx, cy, r, color) => (
+function flor(cx, cy, r, color) {
+    return (
         <g>
             {[0, 72, 144, 216, 288].map((a) => (
                 <circle
@@ -177,7 +181,23 @@ function Fawn() {
             <circle cx={cx} cy={cy} r={r * 0.55} fill="#fff6f2" />
         </g>
     );
+}
 
+// Corona de flores que se apoya sobre la foto de Oli.
+function Crown() {
+    return (
+        <svg className="hero__crown" viewBox="0 0 100 32" aria-hidden="true">
+            <ellipse cx="36" cy="15" rx="6" ry="3" transform="rotate(-22 36 15)" fill="#a9bb8f" />
+            <ellipse cx="64" cy="15" rx="6" ry="3" transform="rotate(22 64 15)" fill="#a9bb8f" />
+            {flor(28, 20, 6.5, '#d98aa0')}
+            {flor(50, 14, 7.5, '#e9a7ba')}
+            {flor(72, 20, 6.5, '#d98aa0')}
+        </svg>
+    );
+}
+
+// Cervatilla con corona de flores, en la paleta de la invitación.
+function Fawn() {
     return (
         <svg className="hero__fawn" viewBox="0 0 140 112" role="img" aria-label="Cervatilla">
             {/* orejas */}
