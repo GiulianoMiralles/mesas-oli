@@ -30,11 +30,41 @@ body {
 }
 
 .page {
+    position: relative;
+    z-index: 1;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+}
+
+.petals {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+
+    span {
+        position: absolute;
+        top: -30px;
+        width: 13px;
+        height: 13px;
+        background: $rosa;
+        border-radius: 72% 28% 70% 30%;
+        opacity: 0.4;
+        animation: petal-fall 12s linear infinite;
+    }
+
+    span:nth-child(1) { left: 6%;  animation-delay: 0s;    animation-duration: 12s; }
+    span:nth-child(2) { left: 18%; animation-delay: -4s;   animation-duration: 15s; background: $rosa-claro; width: 10px; height: 10px; }
+    span:nth-child(3) { left: 31%; animation-delay: -9s;   animation-duration: 13s; }
+    span:nth-child(4) { left: 45%; animation-delay: -2s;   animation-duration: 16s; background: $rosa-fuerte; opacity: 0.25; width: 9px; height: 9px; }
+    span:nth-child(5) { left: 58%; animation-delay: -11s;  animation-duration: 12.5s; background: $rosa-claro; }
+    span:nth-child(6) { left: 71%; animation-delay: -6s;   animation-duration: 14s; width: 11px; height: 11px; }
+    span:nth-child(7) { left: 84%; animation-delay: -13s;  animation-duration: 15.5s; background: $rosa-claro; width: 10px; height: 10px; }
+    span:nth-child(8) { left: 93%; animation-delay: -8s;   animation-duration: 13.5s; background: $rosa-fuerte; opacity: 0.22; }
 }
 
 .card {
@@ -52,6 +82,14 @@ body {
     text-align: center;
     margin-bottom: 22px;
 
+    &__fawn {
+        display: block;
+        width: 118px;
+        height: auto;
+        margin: 0 auto 4px;
+        animation: fade-up 0.5s ease both;
+    }
+
     &__eyebrow {
         margin: 0;
         font-size: 0.82rem;
@@ -59,6 +97,7 @@ body {
         text-transform: uppercase;
         color: $rosa-fuerte;
         font-weight: 600;
+        animation: fade-up 0.5s ease 0.1s both;
     }
 
     &__name {
@@ -69,6 +108,7 @@ body {
         line-height: 1;
         color: $rosa-fuerte;
         text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
+        animation: fade-up 0.5s ease 0.2s both;
     }
 
     &__sub {
@@ -76,11 +116,13 @@ body {
         font-size: 1rem;
         color: $texto;
         font-weight: 500;
+        animation: fade-up 0.5s ease 0.3s both;
     }
 }
 
 .search {
     position: relative;
+    animation: fade-up 0.5s ease 0.4s both;
 
     &__input {
         width: 100%;
@@ -114,6 +156,7 @@ body {
     border-radius: 16px;
     box-shadow: 0 10px 24px rgba(180, 120, 135, 0.2);
     overflow: hidden;
+    animation: fade-up 0.2s ease both;
 
     &__item {
         width: 100%;
@@ -130,11 +173,16 @@ body {
         font-size: 1.02rem;
         color: $texto;
         text-align: left;
-        transition: background 0.12s;
+        transition: background 0.12s, transform 0.12s;
 
-        &:hover,
+        &:hover {
+            background: $rosa-claro;
+            transform: translateX(2px);
+        }
+
         &:active {
             background: $rosa-claro;
+            transform: scale(0.985);
         }
     }
 
@@ -162,16 +210,17 @@ body {
 
 .result {
     text-align: center;
-    animation: pop 0.35s ease;
 
     &__hi {
         margin: 4px 0 14px;
         font-size: 1.15rem;
         font-weight: 600;
         color: $texto;
+        animation: fade-up 0.4s ease both;
     }
 
     &__mesa {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -181,6 +230,7 @@ body {
         border: 2px solid $rosa;
         border-radius: 24px;
         box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.5);
+        animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
     }
 
     &__label {
@@ -204,6 +254,7 @@ body {
         font-size: 1.05rem;
         font-weight: 600;
         color: $texto;
+        animation: fade-up 0.4s ease 0.3s both;
     }
 
     &__again {
@@ -219,6 +270,12 @@ body {
         cursor: pointer;
         box-shadow: 0 8px 18px rgba(217, 138, 160, 0.45);
         transition: transform 0.12s, box-shadow 0.12s;
+        animation: fade-up 0.4s ease 0.5s both;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(217, 138, 160, 0.5);
+        }
 
         &:active {
             transform: translateY(1px);
@@ -227,11 +284,38 @@ body {
     }
 }
 
+.hearts {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+
+    span {
+        position: absolute;
+        bottom: 35%;
+        font-size: 1rem;
+        color: $rosa-fuerte;
+        opacity: 0;
+        animation: heart-float 1.5s ease-out forwards;
+    }
+
+    span:nth-child(1) { left: 12%; animation-delay: 0.35s; font-size: 0.85rem; }
+    span:nth-child(2) { left: 24%; animation-delay: 0.6s;  color: $rosa; }
+    span:nth-child(3) { left: 36%; animation-delay: 0.45s; font-size: 1.2rem; }
+    span:nth-child(4) { left: 48%; animation-delay: 0.75s; color: $rosa; font-size: 0.8rem; }
+    span:nth-child(5) { left: 58%; animation-delay: 0.4s; }
+    span:nth-child(6) { left: 68%; animation-delay: 0.65s; font-size: 1.15rem; color: $rosa; }
+    span:nth-child(7) { left: 78%; animation-delay: 0.5s;  font-size: 0.9rem; }
+    span:nth-child(8) { left: 88%; animation-delay: 0.7s; }
+    span:nth-child(9) { left: 5%;  animation-delay: 0.55s; color: $rosa; font-size: 1.1rem; }
+}
+
 .mates {
     margin-top: 20px;
     padding: 16px 14px;
     background: rgba(247, 217, 223, 0.4);
     border-radius: 18px;
+    animation: fade-up 0.4s ease 0.4s both;
 
     &__title {
         margin: 0 0 8px;
@@ -279,11 +363,61 @@ body {
 
 @keyframes pop {
     0% {
-        transform: scale(0.94);
+        transform: scale(0.85);
         opacity: 0;
     }
     100% {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes petal-fall {
+    0% {
+        transform: translateY(-4vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(108vh) rotate(320deg);
+    }
+}
+
+@keyframes heart-float {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.6);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-95px) scale(1.15) rotate(10deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .petals,
+    .hearts {
+        display: none;
     }
 }
