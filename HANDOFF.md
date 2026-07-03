@@ -60,36 +60,51 @@ mesas-oli/
   #d98aa0 / #e9a7ba / #f7d9df, crema). Colores y tipografías centralizados en
   variables SCSS arriba del archivo.
 - **Build verificado**: `vite build` compila sin errores.
+- **Deploy hecho**: el sitio vive en **https://oli.capydev.app/** (Vercel).
+  El QR (`public/qr-oli.png` / `.svg`) ya apunta a ese dominio.
+- **Estética final**: foto de Oli en el header (`public/oli.jpg`, 480×480
+  optimizada) con corona de flores SVG y cervatilla asomándose. Animaciones:
+  entrada escalonada, pétalos de fondo, corazoncitos al revelar la mesa,
+  todo con soporte de `prefers-reduced-motion`.
+- **Persistencia**: la mesa elegida se recuerda en localStorage
+  (clave `mesas-oli:nombre`).
+- **Pase de UI/UX (2026-07-03)**: zoom rehabilitado (viewport), meta tags `og:`
+  para la preview de WhatsApp, favicon 🌸 + apple-touch-icon, scroll suave al
+  resultado en pantallas chicas, contraste de labels chicos subido a `$marron`,
+  typo "famila" corregido en `guests.json`. Responsive verificado en 320px,
+  390px, tablet y landscape.
 
 ## Lo que FALTA / próximos pasos (orden sugerido)
 
-1. **Levantar dev server**: `pnpm install && pnpm dev`. Trabajar con el navegador
-   abierto para ver cambios en vivo.
-2. **Estética fina**: agregar al header la **foto de Oli** y la **cervatilla**
-   del cartel (assets a poner en `public/`). Ajustar animaciones, tamaños,
-   espaciados a gusto. Tocar preferentemente las **variables SCSS**, no valores
-   sueltos.
-3. **Probar en el celular**: mismo wifi, entrar por la IP/URL de red que imprime
-   Vite. Validar tap en sugerencias, teclado, tamaños.
-4. **Deploy a Vercel**: importar el repo o `vercel` por CLI. Detecta Vite solo.
-5. **Generar el QR**: con la URL final, `pnpm qr https://<mi-url>.vercel.app`.
-   Genera `public/qr-oli.png` y `.svg` en el rosa de la invitación, para el cartel.
+1. **Commit + push** de los cambios del pase de UI/UX (tocados: `index.html`,
+   `src/App.jsx`, `src/styles.scss`, `src/guests.json`; borrado:
+   `public/PHOTO-2026-07-02-23-42-04.jpg`). Sin atribuciones a Claude Code.
+   Vercel redeploya solo al pushear.
+2. **Verificar la preview de WhatsApp** después del deploy: el `og:image` usa
+   `https://oli.capydev.app/oli.jpg`. Ojo: WhatsApp cachea previews — si el
+   link ya se compartió antes puede tardar en mostrar la imagen nueva.
+3. **Probar en celular real** (iOS y Android): flujo completo, teclado sobre
+   las sugerencias, pinch-zoom. Es lo único que no se pudo verificar desde
+   el navegador de escritorio.
+4. **Branding capydeep**: comprar el dominio, armar landing e Instagram.
+   Recién cuando la landing exista, agregar en el footer
+   "diseñado y desarrollado por capydeep" con link (para no linkear al vacío).
+5. **Imprimir el cartel** con el QR (`public/qr-oli.png`).
 
-## Ideas opcionales que puedo pedir
+## Ideas opcionales (estado)
 
-- Si el nombre no aparece: botón de WhatsApp a la organizadora.
-- Recordar la última búsqueda (localStorage).
-- Foto de fondo suave / marco floral como en la invitación.
-- Micro-confetti o corazoncito al mostrar la mesa.
+- Botón de WhatsApp a la organizadora si el nombre no aparece — **descartada**.
+- Recordar la última búsqueda (localStorage) — **hecha**.
+- Micro-confetti o corazoncito al mostrar la mesa — **hecha** (corazoncitos).
+- Foto de fondo suave / marco floral — no elegida, sigue disponible si se pide.
 
 ## Datos y convenciones importantes
 
 - La lista viva es **`src/guests.json`**. Cada objeto = un renglón del cartel:
   `{ "nombre": "Jonathan Garcia y Familia", "mesa": 1 }`. Editar acá si cambian
   invitados o mesas. Son 63 invitados en 12 mesas.
-- **Ojo dato**: en el Excel original la fila de la mesa 10 dice "Giuiano
-  Miralles" (typo, falta la "l"). Lo dejé tal cual; corregilo en `guests.json`
-  si corresponde.
+- Los typos del Excel original ya se corrigieron en `guests.json`
+  ("Giuiano" → "Giuliano", "famila" → "familia").
 - No hay backend ni secrets. Todo es estático. La única "config" externa es la
   URL de Vercel para el QR.
 - Mantener indentación de 4 espacios y el estilo de nombres de clases tipo BEM
