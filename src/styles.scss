@@ -122,7 +122,7 @@ body {
         font-size: 0.82rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: $rosa-fuerte;
+        color: $marron;
         font-weight: 600;
         animation: fade-up 0.5s ease 0.1s both;
     }
@@ -221,7 +221,7 @@ body {
         flex-shrink: 0;
         font-size: 0.8rem;
         font-weight: 600;
-        color: $rosa-fuerte;
+        color: $marron;
         background: $rosa-claro;
         padding: 4px 10px;
         border-radius: 999px;
@@ -231,7 +231,7 @@ body {
 .hint {
     margin: 12px 4px 0;
     font-size: 0.95rem;
-    color: $rosa-fuerte;
+    color: $marron;
     text-align: center;
 }
 
@@ -265,7 +265,7 @@ body {
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-weight: 600;
-        color: $rosa-fuerte;
+        color: $marron;
     }
 
     &__number {
@@ -350,7 +350,7 @@ body {
         letter-spacing: 0.12em;
         text-transform: uppercase;
         font-weight: 600;
-        color: $rosa-fuerte;
+        color: $marron;
     }
 
     &__list {
@@ -381,10 +381,11 @@ body {
     gap: 8px;
     text-align: center;
     font-size: 0.85rem;
-    color: $rosa-fuerte;
+    color: $marron;
 
     &__heart {
         font-size: 1rem;
+        color: $rosa-fuerte; // el corazón sigue rosa: es decorativo
     }
 }
 

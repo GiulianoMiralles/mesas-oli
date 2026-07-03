@@ -14,6 +14,7 @@ export default function App() {
     const [selected, setSelected] = useState(saved);
     const [touched, setTouched] = useState(false);
     const inputRef = useRef(null);
+    const resultRef = useRef(null);
 
     const results = useMemo(
         () => (selected ? [] : searchGuests(index, query)),
@@ -30,6 +31,11 @@ export default function App() {
         setQuery(guest.nombre);
         localStorage.setItem(STORAGE_KEY, guest.nombre);
         inputRef.current?.blur();
+        // En pantallas chicas el resultado queda bajo el fold: lo traemos a la vista.
+        setTimeout(() => resultRef.current?.scrollIntoView({
+            behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: 'start',
+        }), 150);
     }
 
     function reset() {
@@ -103,7 +109,7 @@ export default function App() {
                 )}
 
                 {selected && (
-                    <div className="result" key={selected.id}>
+                    <div className="result" key={selected.id} ref={resultRef}>
                         <p className="result__hi">¡Hola, {firstName(selected.nombre)}!</p>
                         <div className="result__mesa">
                             <Hearts />
