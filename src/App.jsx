@@ -136,8 +136,16 @@ export default function App() {
                 )}
 
                 <footer className="foot">
-                    <span className="foot__heart">♥</span>
-                    <span>¡Gracias por acompañarnos en este día tan especial!</span>
+                    <p className="foot__thanks">
+                        <span className="foot__heart">♥</span>
+                        <span>¡Gracias por acompañarnos en este día tan especial!</span>
+                    </p>
+                    <p className="foot__credit">
+                        Diseñado y desarrollado por{' '}
+                        <a href="https://capydeep.com" target="_blank" rel="noopener noreferrer">
+                            capydeep.com
+                        </a>
+                    </p>
                 </footer>
             </div>
         </div>

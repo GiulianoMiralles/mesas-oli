@@ -375,17 +375,38 @@ body {
 
 .foot {
     margin-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     text-align: center;
-    font-size: 0.85rem;
     color: $marron;
+
+    &__thanks {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.85rem;
+    }
 
     &__heart {
         font-size: 1rem;
         color: $rosa-fuerte; // el corazón sigue rosa: es decorativo
+    }
+
+    &__credit {
+        margin: 12px 0 0;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        opacity: 0.75;
+
+        a {
+            color: $rosa-fuerte;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
